@@ -21,7 +21,7 @@ CLIENTS = [
    (6, "client-6", {2, 5}),
    (7, "client-7", {2}),
 ]
-#CLIENTS = [
+# CLIENTS = [
 #    (2, "client-1", {3, 5}),
 #    (2, "client-2", {1, 5}),
 #    (3, "client-3", {2, 4}),
@@ -29,7 +29,7 @@ CLIENTS = [
 #    (5, "client-5", {3, 4}),
 #    (6, "client-6", {2, 4, 5}),
 #    (7, "client-7", {1, 4}),
-#]
+# ]
 
 
 async def launch_client_after_delay(delay, name, caps):
