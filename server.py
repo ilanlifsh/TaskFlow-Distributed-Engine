@@ -169,6 +169,7 @@ class Server:
         - must match client's capabilities
         - uses shortest-queue priority
         - respects client's parallel capacity
+        - enforces: a client cannot run two tasks of the same func_type at once
         - returns None only when all tasks are done/discarded (AND file ended)
         """
         while True:
@@ -187,6 +188,10 @@ class Server:
 
                 # Try to pick best task among types this client can execute
                 for f in client.caps:
+                    # NEW RULE: skip this type if the client already runs a task of this type
+                    if any(self.tasks[tid].func_type == f for tid in client.running):
+                        continue
+
                     q = self.tasks_by_type[f]
                     if q and len(q) < best_len:
                         best_len = len(q)
